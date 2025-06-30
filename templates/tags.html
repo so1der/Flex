@@ -9,7 +9,7 @@
   </header>
   <div>
     <ul class="list">
-      {%- for tag, articles in tags|sort %}
+      {% for tag, articles in tags|sort_by_article_count %}
           <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</li>
       {% endfor %}
     </ul>
