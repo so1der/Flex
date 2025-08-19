@@ -9,11 +9,14 @@
   </header>
   <div>
     <dl>
-      {% set previous_date = False %}
+      {% set ns = namespace(previous_date=False) %} 
 
       {% for article in dates %}
-        {% if article.locale_date != previous_date %}
-          {% set previous_date = article.locale_date %}
+        {% if article.locale_date != ns.previous_date %}
+	  {% if article.locale_date[9] != ns.previous_date[9] %}
+	    <h2> {{ article.locale_date[6:10]  }}  </h2>
+	  {% endif %}
+          {% set ns.previous_date = article.locale_date %}
           <dt>{{ article.locale_date }}</dt>
         {% endif %}
 
